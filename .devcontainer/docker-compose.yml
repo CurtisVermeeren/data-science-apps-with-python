@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   python-app:
-    container_name: python-devcontainer-scaffold
+    container_name: data-science-apps-with-python
     build: 
       context:  ../
       dockerfile: ./.devcontainer/Dockerfile

@@ -1,6 +1,17 @@
-# Python-Devcontainer-Scaffold
-Files for a VSCode devcontainer using Python. 
-Includes the Python Extension.
-The default terminal is Zsh as configured in the Dockerfile
+# Data Science Apps with Python
+A collection of 12 small data science applications built using Python.
 
-### The Applications
+These projects make use of the Streamlit framework. 
+Streamlit is a framework that helps turn data scripts into shareable web apps in minutes.
+It requires very little front-end experience but features a variety of components that can be used quickly.
+
+## The Applications
+
+The dependencies for all projects are stored inside `requirements.txt`. These are installed when the dev container is built. 
+
+To run an application `cd` to its directory and use `streamlit run APPLICATION-NAME.py`.
+
+### List of Applications Includes:
+* Stock Price App (View Google stock price and volume of trade.)
+* Bioinformatics (Input a DNA sequence and count the number of each nucleotide.)
+* Basketball App (Views NBA player stats filtered by team and position.)
