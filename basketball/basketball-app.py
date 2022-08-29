@@ -1,7 +1,9 @@
 # Imports
-import streamlit as st
-import pandas as pd
-import base64
+import streamlit as st  # streamlit for building web app
+import pandas as pd # pandas used for handling dataframes and web scraping
+import base64 # handle data download for csv file
+
+# matplotlib, seaborn, numpy are used to create the heatmap chart
 import matplotlib.pyplot as plt
 import seaborn as sns 
 import numpy as np
@@ -21,6 +23,7 @@ selected_year = st.sidebar.selectbox('Year', list(reversed(range(1950, 2022))))
 @st.cache
 def load_data(year):
     url = "https://www.basketball-reference.com/leagues/NBA_" + str(year) + "_per_game.html"
+    # Scrape the url with 
     html = pd.read_html(url, header = 0)
     df = html[0]
     # Remove repeating headers in content
@@ -44,7 +47,6 @@ selected_pos = st.sidebar.multiselect('Position', unique_pos, unique_pos)
 df_selected_team = playerstats[(playerstats.Tm.isin(selected_team)) & (playerstats.Pos.isin(selected_pos))]
 
 st.header('Display Player Stats of Selected Team(s)')
-st.write('Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' comlumns.')
 st.write('Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
 st.dataframe(df_selected_team)
 
