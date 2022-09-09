@@ -23,12 +23,13 @@ selected_year = st.sidebar.selectbox('Year', list(reversed(range(1950, 2022))))
 @st.cache
 def load_data(year):
     url = "https://www.basketball-reference.com/leagues/NBA_" + str(year) + "_per_game.html"
-    # Scrape the url with 
+    # Scrape the url with pandas
     html = pd.read_html(url, header = 0)
     df = html[0]
     # Remove repeating headers in content
     raw = df.drop(df[df.Age == 'Age'].index)
     raw = raw.fillna(0)
+    # Remove the 'Rk' column
     playerstats = raw.drop(['Rk'], axis=1)
     return playerstats
 
@@ -56,7 +57,6 @@ def file_download(df):
     b64 = base64.b64encode(csv.encode()).decode() # string to byte conversion
     href = f'<a href="data:file/csv;base64,{b64}" download="playerstats.csv">Download CSV File</a>'
     return href
-
 
 st.markdown(file_download(df_selected_team), unsafe_allow_html=True)
 
